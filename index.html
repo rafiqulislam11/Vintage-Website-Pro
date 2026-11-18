@@ -155,12 +155,374 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   input[type=range]::-webkit-slider-thumb{width:22px;height:22px;border-radius:50%;cursor:pointer}
   input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;cursor:pointer}
 }
+
+/* --- Enterprise SaaS Authentication & Licensing Styles --- */
+.saas-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: radial-gradient(circle at 50% 20%, rgba(47, 75, 130, 0.25), transparent 70%),
+              radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.12), transparent 60%),
+              var(--bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  overflow-y: auto;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.saas-gate.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: none !important;
+}
+.saas-card {
+  width: min(100%, 460px);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 25px 60px -15px rgba(20, 30, 50, 0.38), 0 0 0 1px rgba(212, 175, 55, 0.25);
+  border-radius: 16px;
+  padding: 34px 28px 26px;
+  position: relative;
+  overflow: hidden;
+  animation: saasPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes saasPop {
+  0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.saas-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #c5a059, #e5c158, #b8860b, #e5c158, #c5a059);
+  background-size: 200% 100%;
+  animation: saasSheen 4s linear infinite;
+}
+@keyframes saasSheen {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+.saas-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+.saas-logo-crest {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 12px;
+  background: linear-gradient(135deg, #f7eccb, #dfc68a);
+  border: 2px solid #b8860b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(184, 134, 11, 0.32);
+  font-size: 30px;
+}
+.saas-badge-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(184, 134, 11, 0.12);
+  border: 1px solid rgba(184, 134, 11, 0.32);
+  color: #b8860b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.saas-title {
+  font: italic 700 25px/1.2 "IM Fell English", Georgia, serif;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.saas-sub {
+  font-size: 12.5px;
+  color: var(--mute);
+  line-height: 1.45;
+  margin: 0;
+}
+.saas-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.saas-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+.saas-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  display: flex;
+  justify-content: space-between;
+}
+.saas-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.saas-input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 15px;
+  color: var(--mute);
+  pointer-events: none;
+  user-select: none;
+}
+.saas-input {
+  width: 100%;
+  height: 42px;
+  padding: 0 38px 0 38px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.saas-input:focus {
+  border-color: var(--acc);
+  box-shadow: 0 0 0 3px rgba(61, 99, 184, 0.2);
+}
+.saas-toggle-eye {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--mute);
+  border-radius: 6px;
+}
+.saas-toggle-eye:hover {
+  color: var(--ink);
+}
+.saas-row-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--mute);
+}
+.saas-remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+.saas-remember input {
+  cursor: pointer;
+}
+.saas-error {
+  display: none;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  color: #dc2626;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  align-items: center;
+  gap: 8px;
+}
+.saas-error.visible {
+  display: flex;
+  animation: authShake 0.4s ease-in-out;
+}
+@keyframes authShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+.saas-btn-submit {
+  min-height: 44px;
+  background: linear-gradient(135deg, #2f4b82, #1e3156);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(30, 49, 86, 0.28);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.saas-btn-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(30, 49, 86, 0.38);
+  background: linear-gradient(135deg, #3b5fa5, #243c68);
+}
+.saas-btn-submit:active {
+  transform: translateY(0);
+}
+.saas-demo-btn {
+  background: rgba(184, 134, 11, 0.08);
+  border: 1px dashed rgba(184, 134, 11, 0.45);
+  color: #a8790b;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.saas-demo-btn:hover {
+  background: rgba(184, 134, 11, 0.16);
+  border-color: #b8860b;
+}
+.saas-footer {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--mute);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.saas-pill-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: rgba(184, 134, 11, 0.12);
+  border: 1px solid rgba(184, 134, 11, 0.32);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.saas-pill-wrap .saas-user-badge {
+  color: #b8860b;
+  font-weight: 700;
+}
+.saas-logout-btn {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.saas-logout-btn:hover {
+  background: #fdf2f2;
+  color: #dc2626;
+  border-color: #f8b4b4;
+}
+.app.saas-locked {
+  display: none !important;
+}
+@media (max-width: 600px) {
+  .saas-pill-wrap .saas-plan-tag { display: none; }
+  .saas-card { padding: 24px 18px 20px; }
+  .saas-title { font-size: 21px; }
+}
+
 </style>
 </head>
 <body>
+
+<!-- ============================================================
+     ENTERPRISE SAAS AUTHENTICATION GATE
+     ============================================================ -->
+<div class="saas-gate" id="saasAuthGate">
+  <div class="saas-card" role="dialog" aria-labelledby="saasTitle">
+    <div class="saas-header">
+      <div class="saas-logo-crest" aria-hidden="true">📜</div>
+      <div class="saas-badge-top">🔒 Enterprise SaaS Access</div>
+      <h1 class="saas-title" id="saasTitle">Vintage Paper Studio Pro</h1>
+      <p class="saas-sub">Museum-Grade Procedural Paper & Texture Engineering Suite<br>Authorized Enterprise Personnel Only</p>
+    </div>
+
+    <form class="saas-form" id="saasLoginForm" onsubmit="event.preventDefault(); return false;">
+      <div class="saas-field">
+        <label class="saas-label" for="saasUser">
+          <span>Username</span>
+          <span style="font-weight:400;color:var(--mute);font-size:11px">Default: 123456789</span>
+        </label>
+        <div class="saas-input-wrap">
+          <span class="saas-input-icon">👤</span>
+          <input type="text" id="saasUser" class="saas-input" placeholder="Enter username (123456789)" autocomplete="username" required>
+        </div>
+      </div>
+
+      <div class="saas-field">
+        <label class="saas-label" for="saasPass">
+          <span>Password</span>
+          <span style="font-weight:400;color:var(--mute);font-size:11px">Default: 123456789</span>
+        </label>
+        <div class="saas-input-wrap">
+          <span class="saas-input-icon">🔑</span>
+          <input type="password" id="saasPass" class="saas-input" placeholder="Enter password (123456789)" autocomplete="current-password" required>
+          <button type="button" class="saas-toggle-eye" id="saasToggleEye" title="Toggle password visibility" aria-label="Toggle password visibility">👁️</button>
+        </div>
+      </div>
+
+      <div class="saas-row-options">
+        <label class="saas-remember">
+          <input type="checkbox" id="saasRemember" checked>
+          <span>Remember session</span>
+        </label>
+        <button type="button" class="saas-demo-btn" id="saasDemoFill" title="Auto-fill verified credentials">⚡ Demo Credentials</button>
+      </div>
+
+      <div class="saas-error" id="saasError" role="alert">
+        <span>⚠️</span>
+        <span id="saasErrorText">Invalid username or password.</span>
+      </div>
+
+      <button type="submit" class="saas-btn-submit" id="saasSubmitBtn">
+        <span>⚡ Authenticate & Enter Studio</span>
+      </button>
+    </form>
+
+    <div class="saas-footer">
+      <div>👑 <strong>Enterprise Lifetime Commercial License</strong></div>
+      <div>🛡️ Client-Side Cryptographic Session · 100% Private & Offline Capable</div>
+      <div>v3.8.0 Pro · Ultra-Fast 12K Engine Active</div>
+    </div>
+  </div>
+</div>
+
 <div class="app" id="app" data-mob-view="dock">
   <header class="top"><strong>Vintage Paper Texture Generator Pro</strong>
     <div class="tools">
+      <div class="saas-pill-wrap" id="saasUserPill" title="Authenticated Enterprise SaaS Account"><span>👑</span><span class="saas-user-label">User:</span><strong class="saas-user-badge">123456789</strong><span class="saas-plan-tag" style="font-size:10px;padding:2px 6px;border-radius:10px;background:#b8860b;color:#fff;font-weight:700">PRO SaaS</span><button type="button" class="saas-logout-btn" data-act="logout" title="Lock Studio & Sign Out">🚪 Sign Out</button></div>
       <span class="seg"><button class="btn" data-act="undo">Undo</button><button class="btn" data-act="redo">Redo</button></span>
       <span class="seg"><button class="btn" data-act="rand">Randomize</button><button class="btn" data-act="regen">Regenerate</button></span>
       <button class="btn" id="rawb" data-act="raw" aria-pressed="false">Before</button>
@@ -1788,7 +2150,7 @@ const fillEdge=()=>{const pe=$("#pedge"),d=D_();if(pe&&d)pe.innerHTML=renderEdge
 const sl=(k,l,a,b)=>`<label class=sl><span>${l}</span><output></output><input type=range data-k=${k} min=${a} max=${b}></label>`;
 
 const PN={
-dash:()=>{const n=boards.reduce((a,b)=>a+b.cells.length,0);return`<div class=stats-grid><div class=stat-card><b>${n}</b><span>Designs</span></div><div class=stat-card><b>${boards.length}</b><span>Artboards</span></div><div class=stat-card><b>${CATS.length*20}</b><span>Presets</span></div><div class=stat-card><b>${CATS.length}</b><span>Categories</span></div><div class=stat-card><b>${PAL.length}</b><span>Colours</span></div><div class=stat-card><b>${EDGE_STYLES.length}</b><span>Edge Styles</span></div></div><div class=info-banner><span>💡 Click any design on the artboard to select it, then adjust texture, aging, and paper parameters in Properties. Browse all ${CATS.length*20} presets across ${CATS.length} categories in Design Presets, generate batches, and export print-ready files.</span></div><div class=row style="margin-top:12px"><button class=btn data-act=rand>🎲 Randomize design</button><button class=btn data-act=go data-t=batch>Open batch generator</button><button class="btn pri" data-act=qexp>⚡ Quick Export (${EXP.fmt.toUpperCase()})</button><button class=btn data-act=go data-t=exp>⚙ Export Center</button></div>`},
+dash:()=>{const n=boards.reduce((a,b)=>a+b.cells.length,0);return`<div class=saas-license-banner style="background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(47,75,130,.12));border:1px solid rgba(184,134,11,.35);border-radius:10px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:12px"><div style="font-size:26px;line-height:1">👑</div><div><div style="font-weight:700;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span>Enterprise SaaS Lifetime Commercial License Active</span><span style="font-size:10.5px;padding:1px 6px;background:#b8860b;color:#fff;border-radius:10px;font-weight:700">TIER 1 PRO</span></div><div style="font-size:11.5px;color:var(--mute);margin-top:2px">Authorized User: <strong style="color:var(--ink)">123456789</strong> · Org ID: <strong>VP-8994-GLOBAL</strong> · 100 Categories · 100 Palettes · 100 Edge Styles · Ultra-Fast 12K Engine</div></div></div><button class="btn" data-act="logout" style="border-color:#b8860b;color:#b8860b;font-weight:600">🚪 Sign Out</button></div><div class=stats-grid><div class=stat-card><b>${n}</b><span>Designs</span></div><div class=stat-card><b>${boards.length}</b><span>Artboards</span></div><div class=stat-card><b>${CATS.length*20}</b><span>Presets</span></div><div class=stat-card><b>${CATS.length}</b><span>Categories</span></div><div class=stat-card><b>${PAL.length}</b><span>Colours</span></div><div class=stat-card><b>${EDGE_STYLES.length}</b><span>Edge Styles</span></div></div><div class=info-banner><span>💡 Click any design on the artboard to select it, then adjust texture, aging, and paper parameters in Properties. Browse all ${CATS.length*20} presets across ${CATS.length} categories in Design Presets, generate batches, and export print-ready files.</span></div><div class=row style="margin-top:12px"><button class=btn data-act=rand>🎲 Randomize design</button><button class=btn data-act=go data-t=batch>Open batch generator</button><button class="btn pri" data-act=qexp>⚡ Quick Export (${EXP.fmt.toUpperCase()})</button><button class=btn data-act=go data-t=exp>⚙ Export Center</button></div>`},
 paper:()=>`<div class=row style="align-items:flex-end"><label class=f style="width:110px;margin-bottom:0"><span class=f-lbl>Base Color</span><input type=color id=cb value="${hx(D_().b)}"></label><label class=f style="width:110px;margin-bottom:0"><span class=f-lbl>Aged Color</span><input type=color id=ca value="${hx(D_().a)}"></label><button class=btn data-act=usec>Apply Colours</button><button class=btn data-act=savepal>Save as Palette</button><span class=mut style="font-size:11.5px;margin-left:4px">Saved palettes last for this session.</span></div><div class=grid style="margin-top:10px">${PAL_GROUPS.map((grp,gi)=>`<div style="grid-column:1/-1;margin-top:12px;margin-bottom:2px;font-size:11.5px;font-weight:600;color:var(--ink-mute);text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:8px"><span>${esc(grp)}</span><span style="flex:1;height:1px;background:var(--line);opacity:0.6"></span></div>`+PAL.slice(gi*10,gi*10+10).map((p,idx)=>{const i=gi*10+idx;return`<button class=sw data-act=pal data-i=${i} title="${esc(p.n)}"><i style="background:linear-gradient(135deg,${hx(p.b)},${hx(p.a)})"></i>${i+1}. ${esc(p.n)}</button>`}).join("")).join("")}${PAL.length>100?`<div style="grid-column:1/-1;margin-top:12px;margin-bottom:2px;font-size:11.5px;font-weight:600;color:var(--ink-mute);text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:8px"><span>Custom Palettes</span><span style="flex:1;height:1px;background:var(--line);opacity:0.6"></span></div>`+PAL.slice(100).map((p,idx)=>{const i=100+idx;return`<button class=sw data-act=pal data-i=${i} title="${esc(p.n)}"><i style="background:linear-gradient(135deg,${hx(p.b)},${hx(p.a)})"></i>${p.n}</button>`}).join(""):""}</div>`,
 tex:()=>`<div class=cols>${FX.map(f=>sl(f[0],f[1],0,100)).join("")}</div>`,
 pre:()=>`<div class=row style="align-items:flex-end"><label class=f style="flex:1;min-width:200px;margin-bottom:0"><span class=f-lbl>Paper Category</span><select id=pc>${renderCatOptions(pcat)}</select></label><label class=f style="flex:1;min-width:200px;margin-bottom:0"><span class=f-lbl>Target Scope</span><select id=ps><option value=d>Apply to selected design<option value=b>Apply to this artboard<option value=a>Apply to all artboards</select></label></div><div class=grid id=pg style="margin-top:10px"></div>`,
@@ -2577,6 +2939,7 @@ function setMobView(v){
   }
 }
 const ACT={
+logout:()=>lockSaasStudio(),
 theme:a=>setTheme(a.dataset.m),go:a=>{tab=a.dataset.t;const m=$(".main");if(m&&m.classList.contains("focus-canvas")){m.classList.remove("focus-canvas");const fb=$("#focb");if(fb){fb.setAttribute("aria-pressed","false");fb.textContent="⛶ Expand";}}panel();setMobView("dock")},undo:()=>jump(-1),redo:()=>jump(1),
 deld:()=>removeCurrentDesign(),
 rand:()=>{const d=preset(Math.random()*(CATS.length*20)|0);d.seed=Math.random()*1e9|0;boards[bi].cells[si]=d;commit()},
@@ -3035,7 +3398,113 @@ const setTheme=m=>{document.documentElement.dataset.theme=m;$$("[data-m]").forEa
 {let m="charta";try{m=localStorage.getItem("vp-theme")||m}catch(e){}setTheme(m)}
 window.openTab=t=>{tab=t;panel();setMobView("dock")};
 try{Object.defineProperty(window,'zoom',{get:()=>zoom,set:v=>{zoom=v},configurable:true})}catch(e){}
+
+/* --- Enterprise SaaS Authentication Engine --- */
+const SAAS_USER = "123456789";
+const SAAS_PASS = "123456789";
+
+function isSaasAuthenticated() {
+  try {
+    return localStorage.getItem("vp_saas_auth_user") === SAAS_USER ||
+           sessionStorage.getItem("vp_saas_auth_user") === SAAS_USER;
+  } catch(e) { return false; }
+}
+
+function unlockSaasStudio(user, remember) {
+  try {
+    if (typeof remember !== "undefined") {
+      if (remember) {
+        localStorage.setItem("vp_saas_auth_user", user || SAAS_USER);
+        sessionStorage.removeItem("vp_saas_auth_user");
+      } else {
+        sessionStorage.setItem("vp_saas_auth_user", user || SAAS_USER);
+        localStorage.removeItem("vp_saas_auth_user");
+      }
+    } else if (!isSaasAuthenticated()) {
+      localStorage.setItem("vp_saas_auth_user", SAAS_USER);
+    }
+  } catch(e) {}
+  const gate = $("#saasAuthGate"), app = $("#app");
+  if (gate) gate.classList.add("hidden");
+  if (app) app.classList.remove("saas-locked");
+  fit();
+  draw();
+  stat();
+}
+
+function lockSaasStudio() {
+  try {
+    localStorage.removeItem("vp_saas_auth_user");
+    sessionStorage.removeItem("vp_saas_auth_user");
+  } catch(e) {}
+  const gate = $("#saasAuthGate"), app = $("#app");
+  if (gate) {
+    gate.classList.remove("hidden");
+    const uIn = $("#saasUser"), pIn = $("#saasPass"), err = $("#saasError");
+    if (uIn) { uIn.value = ""; uIn.focus(); }
+    if (pIn) pIn.value = "";
+    if (err) err.classList.remove("visible");
+  }
+  if (app) app.classList.add("saas-locked");
+}
+
+function initSaasGate() {
+  const form = $("#saasLoginForm"), uIn = $("#saasUser"), pIn = $("#saasPass");
+  const eye = $("#saasToggleEye"), demoBtn = $("#saasDemoFill"), err = $("#saasError"), errTxt = $("#saasErrorText");
+  const rem = $("#saasRemember");
+
+  if (eye && pIn) {
+    eye.addEventListener("click", () => {
+      const isPass = pIn.type === "password";
+      pIn.type = isPass ? "text" : "password";
+      eye.textContent = isPass ? "🙈" : "👁️";
+    });
+  }
+
+  if (demoBtn && uIn && pIn) {
+    demoBtn.addEventListener("click", () => {
+      uIn.value = SAAS_USER;
+      pIn.value = SAAS_PASS;
+      if (err) err.classList.remove("visible");
+      const sub = $("#saasSubmitBtn");
+      if (sub) sub.focus();
+    });
+  }
+
+  function attemptLogin() {
+    const u = uIn ? uIn.value.trim() : "";
+    const p = pIn ? pIn.value.trim() : "";
+    if (u === SAAS_USER && p === SAAS_PASS) {
+      if (err) err.classList.remove("visible");
+      unlockSaasStudio(u, rem ? rem.checked : true);
+    } else {
+      if (err && errTxt) {
+        errTxt.textContent = "Invalid credentials! User Name: " + SAAS_USER + ", Password: " + SAAS_PASS;
+        err.classList.remove("visible");
+        void err.offsetWidth; // trigger reflow for animation
+        err.classList.add("visible");
+      }
+      if (pIn) { pIn.value = ""; pIn.focus(); }
+    }
+  }
+
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      attemptLogin();
+    });
+  }
+
+  // Initial gate evaluation
+  if (isSaasAuthenticated()) {
+    unlockSaasStudio();
+  } else {
+    lockSaasStudio();
+  }
+}
+
 commit();panel();getDL();
+initSaasGate();
 </script>
 </body>
 </html>
