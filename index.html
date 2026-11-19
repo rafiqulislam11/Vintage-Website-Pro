@@ -156,7 +156,23 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;cursor:pointer}
 }
 
-/* --- Enterprise SaaS Authentication & Licensing Styles --- */
+/* ============================================================
+   WORLD-CLASS ENTERPRISE SAAS AUTHENTICATION & LICENSING
+   ============================================================ */
+:root {
+  --saas-bg-deep: #0a0d14;
+  --saas-card-bg: rgba(18, 22, 31, 0.92);
+  --saas-card-border: rgba(212, 175, 55, 0.32);
+  --saas-gold-pri: #d4af37;
+  --saas-gold-light: #f5e7a9;
+  --saas-gold-dark: #997316;
+  --saas-gold-glow: rgba(212, 175, 55, 0.22);
+  --saas-ink-light: #f0f4fc;
+  --saas-ink-mute: #8e9bb0;
+  --saas-input-bg: rgba(10, 13, 20, 0.75);
+  --saas-input-border: rgba(212, 175, 55, 0.22);
+}
+
 .saas-gate {
   position: fixed;
   inset: 0;
@@ -164,12 +180,14 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  background: radial-gradient(circle at 50% 20%, rgba(47, 75, 130, 0.25), transparent 70%),
-              radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.12), transparent 60%),
-              var(--bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  padding: 20px 14px;
+  background-color: var(--saas-bg-deep);
+  background-image: 
+    radial-gradient(circle at 50% 12%, rgba(212, 175, 55, 0.16) 0%, transparent 60%),
+    radial-gradient(circle at 85% 85%, rgba(61, 99, 184, 0.14) 0%, transparent 55%),
+    radial-gradient(circle at 15% 75%, rgba(184, 134, 11, 0.12) 0%, transparent 50%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   overflow-y: auto;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
@@ -179,83 +197,129 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   pointer-events: none;
   display: none !important;
 }
+
 .saas-card {
-  width: min(100%, 460px);
-  background: var(--panel);
-  border: 1px solid var(--line);
-  box-shadow: 0 25px 60px -15px rgba(20, 30, 50, 0.38), 0 0 0 1px rgba(212, 175, 55, 0.25);
-  border-radius: 16px;
-  padding: 34px 28px 26px;
   position: relative;
-  overflow: hidden;
-  animation: saasPop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+  width: min(100%, 470px);
+  background: var(--saas-card-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--saas-card-border);
+  border-radius: 20px;
+  box-shadow: 
+    0 30px 70px -15px rgba(0, 0, 0, 0.8),
+    0 0 45px -10px var(--saas-gold-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  padding: 38px 34px 30px;
+  animation: saasPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--saas-ink-light);
 }
 @keyframes saasPop {
-  0% { opacity: 0; transform: scale(0.95) translateY(10px); }
+  0% { opacity: 0; transform: scale(0.96) translateY(14px); }
   100% { opacity: 1; transform: scale(1) translateY(0); }
 }
+
 .saas-card::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #c5a059, #e5c158, #b8860b, #e5c158, #c5a059);
-  background-size: 200% 100%;
-  animation: saasSheen 4s linear infinite;
+  left: 20px;
+  right: 20px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--saas-gold-pri), var(--saas-gold-light), var(--saas-gold-pri), transparent);
+  border-radius: 3px;
 }
-@keyframes saasSheen {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 0%; }
-}
+
 .saas-header {
   text-align: center;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
-.saas-logo-crest {
+.saas-crest-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.saas-crest-glow {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
+  animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  100% { transform: scale(1.2); opacity: 0.9; }
+}
+.saas-crest-medallion {
+  position: relative;
   width: 62px;
   height: 62px;
-  margin: 0 auto 12px;
-  background: linear-gradient(135deg, #f7eccb, #dfc68a);
-  border: 2px solid #b8860b;
   border-radius: 50%;
+  background: linear-gradient(135deg, #2a2012 0%, #16120b 100%);
+  border: 2px solid var(--saas-gold-pri);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(184, 134, 11, 0.32);
-  font-size: 30px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(212, 175, 55, 0.3);
 }
-.saas-badge-top {
+.saas-crest-medallion svg {
+  width: 32px;
+  height: 32px;
+  color: var(--saas-gold-pri);
+}
+
+.saas-status-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 3px 10px;
-  border-radius: 20px;
-  background: rgba(184, 134, 11, 0.12);
-  border: 1px solid rgba(184, 134, 11, 0.32);
-  color: #b8860b;
+  gap: 7px;
+  padding: 4px 12px;
+  border-radius: 30px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.28);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  color: var(--saas-gold-light);
+  margin-bottom: 10px;
 }
+.saas-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseDot 2s infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
 .saas-title {
-  font: italic 700 25px/1.2 "IM Fell English", Georgia, serif;
-  color: var(--ink);
-  margin: 0 0 6px;
+  font-family: "IM Fell English", Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  font-style: italic;
+  color: #fff;
+  letter-spacing: 0.3px;
+  margin: 0 0 4px;
 }
 .saas-sub {
   font-size: 12.5px;
-  color: var(--mute);
+  color: var(--saas-ink-mute);
   line-height: 1.45;
   margin: 0;
 }
+
 .saas-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 }
 .saas-field {
   display: flex;
@@ -264,84 +328,216 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   text-align: left;
 }
 .saas-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  display: flex;
-  justify-content: space-between;
-}
-.saas-input-wrap {
-  position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: #d1d9e6;
 }
-.saas-input-icon {
-  position: absolute;
-  left: 12px;
-  font-size: 15px;
-  color: var(--mute);
-  pointer-events: none;
-  user-select: none;
+.saas-label-hint {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--saas-gold-light);
+  opacity: 0.85;
 }
-.saas-input {
-  width: 100%;
-  height: 42px;
-  padding: 0 38px 0 38px;
-  font-size: 14px;
-  font-family: inherit;
-  color: var(--ink);
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
+
+.saas-input-control {
+  display: flex;
+  align-items: center;
+  background: var(--saas-input-bg);
+  border: 1px solid var(--saas-input-border);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  overflow: hidden;
 }
-.saas-input:focus {
-  border-color: var(--acc);
-  box-shadow: 0 0 0 3px rgba(61, 99, 184, 0.2);
+.saas-input-control:focus-within {
+  border-color: var(--saas-gold-pri);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.22), 0 0 16px rgba(212, 175, 55, 0.12);
+  background: rgba(15, 20, 30, 0.95);
 }
+
+.saas-input-prefix {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  color: var(--saas-gold-pri);
+  opacity: 0.85;
+  border-right: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(212, 175, 55, 0.04);
+}
+.saas-input-prefix svg {
+  width: 18px;
+  height: 18px;
+}
+
+.saas-gate input.saas-input {
+  flex: 1 !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  background: transparent !important;
+  padding: 0 14px !important;
+  font-size: 14px !important;
+  font-family: inherit !important;
+  color: #fff !important;
+  min-width: 0 !important;
+  box-shadow: none !important;
+}
+.saas-gate input.saas-input:-webkit-autofill,
+.saas-gate input.saas-input:-webkit-autofill:hover, 
+.saas-gate input.saas-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0 1000px #0e121a inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+.saas-input::placeholder {
+  color: #626f84;
+}
+
 .saas-toggle-eye {
-  position: absolute;
-  right: 8px;
-  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 44px;
   border: none;
+  background: transparent;
+  color: var(--saas-ink-mute);
   cursor: pointer;
-  padding: 6px 8px;
-  font-size: 16px;
-  line-height: 1;
-  color: var(--mute);
-  border-radius: 6px;
+  padding: 0;
+  transition: color 0.15s;
 }
 .saas-toggle-eye:hover {
-  color: var(--ink);
+  color: var(--saas-gold-light);
 }
+.saas-toggle-eye svg {
+  width: 19px;
+  height: 19px;
+}
+
+.saas-quick-cred {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.09) 0%, rgba(47, 75, 130, 0.09) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.saas-cred-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11.5px;
+}
+.saas-cred-title {
+  font-weight: 700;
+  color: var(--saas-gold-light);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.saas-cred-val {
+  color: var(--saas-ink-mute);
+}
+.saas-cred-val strong {
+  color: #fff;
+  font-weight: 600;
+}
+.saas-demo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 11px;
+  background: rgba(212, 175, 55, 0.18);
+  border: 1px solid var(--saas-gold-pri);
+  border-radius: 7px;
+  color: var(--saas-gold-light);
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.saas-demo-btn:hover {
+  background: var(--saas-gold-pri);
+  color: #12161f;
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
+}
+.saas-demo-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
 .saas-row-options {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 12px;
-  color: var(--mute);
+  color: var(--saas-ink-mute);
+  padding: 2px 0;
 }
 .saas-remember {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   cursor: pointer;
   user-select: none;
 }
-.saas-remember input {
+.saas-remember input[type="checkbox"] {
+  accent-color: var(--saas-gold-pri);
+  width: 15px;
+  height: 15px;
   cursor: pointer;
 }
+
+.saas-btn-submit {
+  width: 100%;
+  height: 46px;
+  background: linear-gradient(135deg, #d4af37 0%, #f6e69d 50%, #b8860b 100%);
+  border: none;
+  border-radius: 10px;
+  color: #1a1405;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-top: 4px;
+}
+.saas-btn-submit:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 9px 26px rgba(212, 175, 55, 0.5);
+  filter: brightness(1.05);
+}
+.saas-btn-submit:active {
+  transform: translateY(0);
+}
+.saas-btn-submit svg {
+  width: 17px;
+  height: 17px;
+}
+
 .saas-error {
   display: none;
-  background: rgba(220, 38, 38, 0.08);
-  border: 1px solid rgba(220, 38, 38, 0.35);
-  color: #dc2626;
-  padding: 10px 12px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+  padding: 9px 12px;
   border-radius: 8px;
   font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
   align-items: center;
   gap: 8px;
 }
@@ -354,72 +550,61 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   20%, 60% { transform: translateX(-6px); }
   40%, 80% { transform: translateX(6px); }
 }
-.saas-btn-submit {
-  min-height: 44px;
-  background: linear-gradient(135deg, #2f4b82, #1e3156);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+
+.saas-features-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.saas-feature-chip {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 8px;
-  font-size: 14px;
+  padding: 6px 4px;
+  text-align: center;
+  font-size: 10.5px;
   font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 14px rgba(30, 49, 86, 0.28);
-  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  color: #a0aec0;
+  line-height: 1.25;
 }
-.saas-btn-submit:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(30, 49, 86, 0.38);
-  background: linear-gradient(135deg, #3b5fa5, #243c68);
+.saas-feature-chip b {
+  display: block;
+  color: var(--saas-gold-light);
+  font-size: 11px;
 }
-.saas-btn-submit:active {
-  transform: translateY(0);
-}
-.saas-demo-btn {
-  background: rgba(184, 134, 11, 0.08);
-  border: 1px dashed rgba(184, 134, 11, 0.45);
-  color: #a8790b;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
+
+.saas-footer {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 11px;
+  color: #64748b;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  transition: background 0.15s, border-color 0.15s;
 }
-.saas-demo-btn:hover {
-  background: rgba(184, 134, 11, 0.16);
-  border-color: #b8860b;
-}
-.saas-footer {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-  font-size: 11px;
-  color: var(--mute);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+
+/* User Pill & Studio Elements */
 .saas-pill-wrap {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 8px;
-  background: rgba(184, 134, 11, 0.12);
-  border: 1px solid rgba(184, 134, 11, 0.32);
+  padding: 3px 9px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.35);
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
   color: var(--ink);
   white-space: nowrap;
+}
+.saas-pill-wrap svg {
+  width: 14px;
+  height: 14px;
+  color: #b8860b;
 }
 .saas-pill-wrap .saas-user-badge {
   color: #b8860b;
@@ -431,90 +616,190 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   color: var(--ink);
   font-size: 11.5px;
   font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 5px;
+  padding: 3px 8px;
+  border-radius: 6px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: all 0.15s;
+}
+.saas-logout-btn svg {
+  width: 12px;
+  height: 12px;
 }
 .saas-logout-btn:hover {
   background: #fdf2f2;
   color: #dc2626;
   border-color: #f8b4b4;
 }
+
 .app.saas-locked {
   display: none !important;
 }
-@media (max-width: 600px) {
-  .saas-pill-wrap .saas-plan-tag { display: none; }
-  .saas-card { padding: 24px 18px 20px; }
-  .saas-title { font-size: 21px; }
-}
 
+@media (max-width: 480px) {
+  .saas-card {
+    padding: 26px 18px 22px;
+    border-radius: 16px;
+  }
+  .saas-features-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .saas-title {
+    font-size: 22px;
+  }
+  .saas-quick-cred {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .saas-demo-btn {
+    align-self: flex-start;
+  }
+  .saas-pill-wrap .saas-plan-tag {
+    display: none;
+  }
+}
 </style>
 </head>
 <body>
 
 <!-- ============================================================
-     ENTERPRISE SAAS AUTHENTICATION GATE
+     WORLD-CLASS ENTERPRISE SAAS AUTHENTICATION GATE
      ============================================================ -->
 <div class="saas-gate" id="saasAuthGate">
   <div class="saas-card" role="dialog" aria-labelledby="saasTitle">
     <div class="saas-header">
-      <div class="saas-logo-crest" aria-hidden="true">📜</div>
-      <div class="saas-badge-top">🔒 Enterprise SaaS Access</div>
+      <div class="saas-crest-wrapper">
+        <div class="saas-crest-glow"></div>
+        <div class="saas-crest-medallion">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="saas-status-badge">
+        <span class="saas-pulse-dot"></span>
+        <span>Enterprise SaaS Portal</span>
+      </div>
       <h1 class="saas-title" id="saasTitle">Vintage Paper Studio Pro</h1>
       <p class="saas-sub">Museum-Grade Procedural Paper & Texture Engineering Suite<br>Authorized Enterprise Personnel Only</p>
     </div>
 
     <form class="saas-form" id="saasLoginForm" onsubmit="event.preventDefault(); return false;">
+      <!-- Username Field (Zero Overlap with flexbox prefix) -->
       <div class="saas-field">
         <label class="saas-label" for="saasUser">
           <span>Username</span>
-          <span style="font-weight:400;color:var(--mute);font-size:11px">Default: 123456789</span>
+          <span class="saas-label-hint">Default: 123456789</span>
         </label>
-        <div class="saas-input-wrap">
-          <span class="saas-input-icon">👤</span>
+        <div class="saas-input-control">
+          <div class="saas-input-prefix" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
           <input type="text" id="saasUser" class="saas-input" placeholder="Enter username (123456789)" autocomplete="username" required>
         </div>
       </div>
 
+      <!-- Password Field (Zero Overlap with flexbox prefix + clean toggle) -->
       <div class="saas-field">
         <label class="saas-label" for="saasPass">
           <span>Password</span>
-          <span style="font-weight:400;color:var(--mute);font-size:11px">Default: 123456789</span>
+          <span class="saas-label-hint">Default: 123456789</span>
         </label>
-        <div class="saas-input-wrap">
-          <span class="saas-input-icon">🔑</span>
+        <div class="saas-input-control">
+          <div class="saas-input-prefix" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
           <input type="password" id="saasPass" class="saas-input" placeholder="Enter password (123456789)" autocomplete="current-password" required>
-          <button type="button" class="saas-toggle-eye" id="saasToggleEye" title="Toggle password visibility" aria-label="Toggle password visibility">👁️</button>
+          <button type="button" class="saas-toggle-eye" id="saasToggleEye" title="Toggle password visibility" aria-label="Toggle password visibility">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
         </div>
       </div>
 
+      <!-- Quick Credentials Box with 1-Click Fill -->
+      <div class="saas-quick-cred">
+        <div class="saas-cred-info">
+          <span class="saas-cred-title">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            Master Access Credentials
+          </span>
+          <span class="saas-cred-val">User: <strong>123456789</strong> • Pass: <strong>123456789</strong></span>
+        </div>
+        <button type="button" class="saas-demo-btn" id="saasDemoFill" title="Auto-fill verified credentials">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          1-Click Fill
+        </button>
+      </div>
+
+      <!-- Options Row -->
       <div class="saas-row-options">
         <label class="saas-remember">
           <input type="checkbox" id="saasRemember" checked>
-          <span>Remember session</span>
+          <span>Remember session on this device</span>
         </label>
-        <button type="button" class="saas-demo-btn" id="saasDemoFill" title="Auto-fill verified credentials">⚡ Demo Credentials</button>
       </div>
 
+      <!-- Error State -->
       <div class="saas-error" id="saasError" role="alert">
-        <span>⚠️</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
         <span id="saasErrorText">Invalid username or password.</span>
       </div>
 
+      <!-- Submit Button -->
       <button type="submit" class="saas-btn-submit" id="saasSubmitBtn">
-        <span>⚡ Authenticate & Enter Studio</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        <span>Authenticate & Enter Studio</span>
       </button>
     </form>
 
+    <!-- Platform Feature Strip -->
+    <div class="saas-features-strip">
+      <div class="saas-feature-chip">
+        <b>100 Types</b>
+        Paper Types
+      </div>
+      <div class="saas-feature-chip">
+        <b>100 Styles</b>
+        Edge Finishes
+      </div>
+      <div class="saas-feature-chip">
+        <b>100 Palettes</b>
+        Historic Tones
+      </div>
+      <div class="saas-feature-chip">
+        <b>12K Ultra</b>
+        Print Resolution
+      </div>
+    </div>
+
+    <!-- Security Guarantee Footer -->
     <div class="saas-footer">
-      <div>👑 <strong>Enterprise Lifetime Commercial License</strong></div>
-      <div>🛡️ Client-Side Cryptographic Session · 100% Private & Offline Capable</div>
-      <div>v3.8.0 Pro · Ultra-Fast 12K Engine Active</div>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <span>End-to-End Client-Side Privacy • 100% Offline Capable</span>
     </div>
   </div>
 </div>
@@ -522,7 +807,7 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
 <div class="app" id="app" data-mob-view="dock">
   <header class="top"><strong>Vintage Paper Texture Generator Pro</strong>
     <div class="tools">
-      <div class="saas-pill-wrap" id="saasUserPill" title="Authenticated Enterprise SaaS Account"><span>👑</span><span class="saas-user-label">User:</span><strong class="saas-user-badge">123456789</strong><span class="saas-plan-tag" style="font-size:10px;padding:2px 6px;border-radius:10px;background:#b8860b;color:#fff;font-weight:700">PRO SaaS</span><button type="button" class="saas-logout-btn" data-act="logout" title="Lock Studio & Sign Out">🚪 Sign Out</button></div>
+      <div class="saas-pill-wrap" id="saasUserPill" title="Authenticated Enterprise SaaS Account"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg><span class="saas-user-label">User:</span><strong class="saas-user-badge">123456789</strong><span class="saas-plan-tag" style="font-size:10px;padding:2px 6px;border-radius:10px;background:#b8860b;color:#fff;font-weight:700">PRO SaaS</span><button type="button" class="saas-logout-btn" data-act="logout" title="Lock Studio & Sign Out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Sign Out</button></div>
       <span class="seg"><button class="btn" data-act="undo">Undo</button><button class="btn" data-act="redo">Redo</button></span>
       <span class="seg"><button class="btn" data-act="rand">Randomize</button><button class="btn" data-act="regen">Regenerate</button></span>
       <button class="btn" id="rawb" data-act="raw" aria-pressed="false">Before</button>
@@ -3453,11 +3738,14 @@ function initSaasGate() {
   const eye = $("#saasToggleEye"), demoBtn = $("#saasDemoFill"), err = $("#saasError"), errTxt = $("#saasErrorText");
   const rem = $("#saasRemember");
 
+  const eyeOpenSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+  const eyeSlashSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+
   if (eye && pIn) {
     eye.addEventListener("click", () => {
       const isPass = pIn.type === "password";
       pIn.type = isPass ? "text" : "password";
-      eye.textContent = isPass ? "🙈" : "👁️";
+      eye.innerHTML = isPass ? eyeSlashSvg : eyeOpenSvg;
     });
   }
 
@@ -3481,7 +3769,7 @@ function initSaasGate() {
       if (err && errTxt) {
         errTxt.textContent = "Invalid credentials! User Name: " + SAAS_USER + ", Password: " + SAAS_PASS;
         err.classList.remove("visible");
-        void err.offsetWidth; // trigger reflow for animation
+        void err.offsetWidth; // trigger reflow for shake animation
         err.classList.add("visible");
       }
       if (pIn) { pIn.value = ""; pIn.focus(); }
@@ -3502,8 +3790,6 @@ function initSaasGate() {
     lockSaasStudio();
   }
 }
-
-commit();panel();getDL();
 initSaasGate();
 </script>
 </body>
