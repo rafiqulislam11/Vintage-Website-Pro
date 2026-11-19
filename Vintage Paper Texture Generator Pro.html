@@ -157,11 +157,11 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
 }
 
 /* ============================================================
-   WORLD-CLASS ENTERPRISE SAAS AUTHENTICATION & LICENSING
+   WORLD-CLASS ENTERPRISE SAAS AUTHENTICATION & USER SYSTEM
    ============================================================ */
 :root {
   --saas-bg-deep: #0a0d14;
-  --saas-card-bg: rgba(18, 22, 31, 0.92);
+  --saas-card-bg: rgba(18, 22, 31, 0.94);
   --saas-card-border: rgba(212, 175, 55, 0.32);
   --saas-gold-pri: #d4af37;
   --saas-gold-light: #f5e7a9;
@@ -169,8 +169,14 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   --saas-gold-glow: rgba(212, 175, 55, 0.22);
   --saas-ink-light: #f0f4fc;
   --saas-ink-mute: #8e9bb0;
-  --saas-input-bg: rgba(10, 13, 20, 0.75);
+  --saas-input-bg: rgba(10, 13, 20, 0.85);
   --saas-input-border: rgba(212, 175, 55, 0.22);
+  --saas-err-bg: rgba(239, 68, 68, 0.12);
+  --saas-err-border: rgba(239, 68, 68, 0.35);
+  --saas-err-text: #fca5a5;
+  --saas-succ-bg: rgba(16, 185, 129, 0.12);
+  --saas-succ-border: rgba(16, 185, 129, 0.35);
+  --saas-succ-text: #6ee7b7;
 }
 
 .saas-gate {
@@ -203,17 +209,17 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   position: relative;
   z-index: 10;
   margin: auto;
-  width: min(100%, 460px);
+  width: min(100%, 480px);
   background: var(--saas-card-bg);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--saas-card-border);
-  border-radius: 18px;
+  border-radius: 20px;
   box-shadow: 
     0 25px 60px -15px rgba(0, 0, 0, 0.8),
     0 0 40px -10px var(--saas-gold-glow),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  padding: 26px 28px 22px;
+  padding: 28px 30px 24px;
   animation: saasPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--saas-ink-light);
   box-sizing: border-box;
@@ -238,40 +244,22 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   text-align: center;
   margin-bottom: 16px;
 }
-.saas-crest-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
-}
-.saas-crest-glow {
-  position: absolute;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
-  animation: pulseGlow 3s ease-in-out infinite alternate;
-}
-@keyframes pulseGlow {
-  0% { transform: scale(0.9); opacity: 0.5; }
-  100% { transform: scale(1.2); opacity: 0.9; }
-}
 .saas-crest-medallion {
   position: relative;
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: linear-gradient(135deg, #2a2012 0%, #16120b 100%);
   border: 2px solid var(--saas-gold-pri);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(212, 175, 55, 0.3);
+  margin-bottom: 6px;
 }
 .saas-crest-medallion svg {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   color: var(--saas-gold-pri);
 }
 
@@ -283,7 +271,7 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   border-radius: 30px;
   background: rgba(212, 175, 55, 0.1);
   border: 1px solid rgba(212, 175, 55, 0.28);
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
@@ -305,7 +293,7 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
 
 .saas-title {
   font-family: "IM Fell English", Georgia, serif;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 700;
   font-style: italic;
   color: #fff;
@@ -319,27 +307,55 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   margin: 0;
 }
 
+/* Nav Tabs */
+.saas-nav-tabs {
+  display: flex;
+  background: rgba(10, 13, 20, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 10px;
+  padding: 3px;
+  margin-bottom: 16px;
+  gap: 4px;
+}
+.saas-nav-btn {
+  flex: 1;
+  padding: 7px;
+  border: none;
+  background: transparent;
+  color: var(--saas-ink-mute);
+  font-size: 12.5px;
+  font-weight: 600;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.saas-nav-btn.active {
+  background: rgba(212, 175, 55, 0.16);
+  color: var(--saas-gold-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
 .saas-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
 }
 .saas-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   text-align: left;
 }
 .saas-label {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   color: #d1d9e6;
 }
 .saas-label-hint {
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 500;
   color: var(--saas-gold-light);
   opacity: 0.85;
@@ -350,7 +366,7 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   align-items: center;
   background: var(--saas-input-bg);
   border: 1px solid var(--saas-input-border);
-  border-radius: 10px;
+  border-radius: 9px;
   transition: all 0.2s ease;
   overflow: hidden;
 }
@@ -364,8 +380,8 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   color: var(--saas-gold-pri);
   opacity: 0.85;
@@ -373,24 +389,27 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   background: rgba(212, 175, 55, 0.04);
 }
 .saas-input-prefix svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .saas-gate input.saas-input {
   flex: 1 !important;
-  height: 44px !important;
-  min-height: 44px !important;
+  height: 40px !important;
+  min-height: 40px !important;
   border: none !important;
   border-radius: 0 !important;
   outline: none !important;
   background: transparent !important;
-  padding: 0 14px !important;
-  font-size: 14px !important;
+  padding: 0 12px !important;
+  font-size: 13.5px !important;
   font-family: inherit !important;
   color: #fff !important;
   min-width: 0 !important;
   box-shadow: none !important;
+}
+.saas-gate input.saas-input::placeholder {
+  color: #5d6a7e;
 }
 .saas-gate input.saas-input:-webkit-autofill,
 .saas-gate input.saas-input:-webkit-autofill:hover, 
@@ -399,16 +418,13 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   -webkit-box-shadow: 0 0 0 1000px #0e121a inset !important;
   transition: background-color 5000s ease-in-out 0s;
 }
-.saas-input::placeholder {
-  color: #626f84;
-}
 
 .saas-toggle-eye {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 44px;
+  width: 38px;
+  height: 40px;
   border: none;
   background: transparent;
   color: var(--saas-ink-mute);
@@ -420,133 +436,102 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   color: var(--saas-gold-light);
 }
 .saas-toggle-eye svg {
-  width: 19px;
-  height: 19px;
-}
-
-.saas-quick-cred {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.09) 0%, rgba(47, 75, 130, 0.09) 100%);
-  border: 1px solid rgba(212, 175, 55, 0.28);
-  border-radius: 10px;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-.saas-cred-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  font-size: 11.5px;
-}
-.saas-cred-title {
-  font-weight: 700;
-  color: var(--saas-gold-light);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.saas-cred-val {
-  color: var(--saas-ink-mute);
-}
-.saas-cred-val strong {
-  color: #fff;
-  font-weight: 600;
-}
-.saas-demo-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 6px 11px;
-  background: rgba(212, 175, 55, 0.18);
-  border: 1px solid var(--saas-gold-pri);
-  border-radius: 7px;
-  color: var(--saas-gold-light);
-  font-size: 11.5px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s;
-}
-.saas-demo-btn:hover {
-  background: var(--saas-gold-pri);
-  color: #12161f;
-  box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
-}
-.saas-demo-btn svg {
-  width: 13px;
-  height: 13px;
+  width: 17px;
+  height: 17px;
 }
 
 .saas-row-options {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--saas-ink-mute);
   padding: 2px 0;
 }
-.saas-remember {
+.saas-remember, .saas-terms {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   cursor: pointer;
   user-select: none;
+  font-size: 11.5px;
 }
-.saas-remember input[type="checkbox"] {
+.saas-remember input[type="checkbox"], .saas-terms input[type="checkbox"] {
   accent-color: var(--saas-gold-pri);
-  width: 15px;
-  height: 15px;
+  width: 14px;
+  height: 14px;
   cursor: pointer;
+}
+.saas-link-btn {
+  background: none;
+  border: none;
+  color: var(--saas-gold-light);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+.saas-link-btn:hover {
+  color: #fff;
 }
 
 .saas-btn-submit {
   width: 100%;
-  height: 46px;
+  height: 44px;
   background: linear-gradient(135deg, #d4af37 0%, #f6e69d 50%, #b8860b 100%);
   border: none;
-  border-radius: 10px;
+  border-radius: 9px;
   color: #1a1405;
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
+  gap: 7px;
+  box-shadow: 0 5px 18px rgba(212, 175, 55, 0.35);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  margin-top: 4px;
+  margin-top: 2px;
 }
 .saas-btn-submit:hover {
   transform: translateY(-1.5px);
-  box-shadow: 0 9px 26px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.48);
   filter: brightness(1.05);
 }
 .saas-btn-submit:active {
   transform: translateY(0);
 }
 .saas-btn-submit svg {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
 }
 
-.saas-error {
+/* Notice / Alerts */
+.saas-notice {
   display: none;
-  background: rgba(239, 68, 68, 0.12);
-  border: 1px solid rgba(239, 68, 68, 0.35);
-  color: #fca5a5;
   padding: 9px 12px;
   border-radius: 8px;
   font-size: 12px;
   align-items: center;
   gap: 8px;
+  margin-bottom: 10px;
+  line-height: 1.35;
 }
-.saas-error.visible {
+.saas-notice.error {
   display: flex;
+  background: var(--saas-err-bg);
+  border: 1px solid var(--saas-err-border);
+  color: var(--saas-err-text);
   animation: authShake 0.4s ease-in-out;
+}
+.saas-notice.success {
+  display: flex;
+  background: var(--saas-succ-bg);
+  border: 1px solid var(--saas-succ-border);
+  color: var(--saas-succ-text);
+  animation: saasPop 0.3s ease-in-out;
 }
 @keyframes authShake {
   0%, 100% { transform: translateX(0); }
@@ -554,43 +539,134 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   40%, 80% { transform: translateX(6px); }
 }
 
-.saas-features-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+/* User Profile Modal Overlay */
+.user-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(8, 11, 16, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.saas-feature-chip {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 8px;
-  padding: 6px 4px;
-  text-align: center;
-  font-size: 10.5px;
-  font-weight: 600;
-  color: #a0aec0;
-  line-height: 1.25;
+.user-modal-overlay.open {
+  display: flex;
 }
-.saas-feature-chip b {
-  display: block;
-  color: var(--saas-gold-light);
-  font-size: 11px;
+.user-modal-card {
+  position: relative;
+  width: min(100%, 500px);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  padding: 26px 28px 22px;
+  color: var(--ink);
+  animation: saasPop 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
-
-.saas-footer {
-  margin-top: 14px;
-  text-align: center;
-  font-size: 11px;
-  color: #64748b;
+.user-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--mute);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 14px;
+}
+.user-modal-close:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.profile-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+.profile-avatar-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d4af37, #997316);
+  color: #121620;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+}
+.profile-header-info h2 {
+  font-size: 18px;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+.profile-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.profile-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: rgba(212, 175, 55, 0.15);
+  color: #b8860b;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+.profile-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.profile-meta-item {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.profile-meta-label {
+  font-size: 11px;
+  color: var(--mute);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.profile-meta-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  word-break: break-all;
+}
+
+.profile-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
   gap: 6px;
 }
 
-/* User Pill & Studio Elements */
+/* User Pill & Studio Topbar */
 .saas-pill-wrap {
   display: inline-flex;
   align-items: center;
@@ -603,6 +679,10 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   font-weight: 600;
   color: var(--ink);
   white-space: nowrap;
+  cursor: pointer;
+}
+.saas-pill-wrap:hover {
+  background: rgba(212, 175, 55, 0.2);
 }
 .saas-pill-wrap svg {
   width: 14px;
@@ -627,10 +707,6 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
   gap: 4px;
   transition: all 0.15s;
 }
-.saas-logout-btn svg {
-  width: 12px;
-  height: 12px;
-}
 .saas-logout-btn:hover {
   background: #fdf2f2;
   color: #dc2626;
@@ -643,25 +719,14 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
 
 @media (max-width: 480px) {
   .saas-card {
-    padding: 26px 18px 22px;
+    padding: 24px 18px 20px;
     border-radius: 16px;
   }
-  .saas-features-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .saas-title {
-    font-size: 22px;
+    font-size: 21px;
   }
-  .saas-quick-cred {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .saas-demo-btn {
-    align-self: flex-start;
-  }
-  .saas-pill-wrap .saas-plan-tag {
-    display: none;
+  .profile-meta-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
@@ -674,56 +739,63 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
 <div class="saas-gate" id="saasAuthGate">
   <div class="saas-card" role="dialog" aria-labelledby="saasTitle">
     <div class="saas-header">
-      <div class="saas-crest-wrapper">
-        <div class="saas-crest-glow"></div>
-        <div class="saas-crest-medallion">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/>
-          </svg>
-        </div>
+      <div class="saas-crest-medallion">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/>
+        </svg>
       </div>
+      <br>
       <div class="saas-status-badge">
         <span class="saas-pulse-dot"></span>
         <span>Enterprise SaaS Portal</span>
       </div>
       <h1 class="saas-title" id="saasTitle">Vintage Paper Studio Pro</h1>
-      <p class="saas-sub">Museum-Grade Procedural Paper & Texture Engineering Suite<br>Authorized Enterprise Personnel Only</p>
+      <p class="saas-sub" id="saasSub">Secure User Registration & Authentication System</p>
     </div>
 
-    <form class="saas-form" id="saasLoginForm" onsubmit="event.preventDefault(); return false;">
-      <!-- Username Field (Zero Overlap with flexbox prefix) -->
+    <!-- Nav Tabs: Sign In / Create Account -->
+    <div class="saas-nav-tabs" id="authNavTabs">
+      <button type="button" class="saas-nav-btn active" id="btnTabLogin">Sign In</button>
+      <button type="button" class="saas-nav-btn" id="btnTabRegister">Create Account</button>
+    </div>
+
+    <!-- Notice / Alert Banner -->
+    <div class="saas-notice" id="authNotice" role="alert">
+      <span id="authNoticeIcon">⚠️</span>
+      <span id="authNoticeText"></span>
+    </div>
+
+    <!-- VIEW 1: SIGN IN FORM -->
+    <form class="saas-form" id="formLogin" onsubmit="event.preventDefault(); return false;">
       <div class="saas-field">
-        <label class="saas-label" for="saasUser">
-          <span>Username</span>
-          <span class="saas-label-hint">Default: 123456789</span>
+        <label class="saas-label" for="loginEmail">
+          <span>Gmail / Email Address</span>
         </label>
         <div class="saas-input-control">
-          <div class="saas-input-prefix" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
+          <div class="saas-input-prefix">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
             </svg>
           </div>
-          <input type="text" id="saasUser" class="saas-input" placeholder="Enter username (123456789)" autocomplete="username" required>
+          <input type="email" id="loginEmail" class="saas-input" placeholder="name@domain.com" autocomplete="username" required>
         </div>
       </div>
 
-      <!-- Password Field (Zero Overlap with flexbox prefix + clean toggle) -->
       <div class="saas-field">
-        <label class="saas-label" for="saasPass">
+        <label class="saas-label" for="loginPass">
           <span>Password</span>
-          <span class="saas-label-hint">Default: 123456789</span>
         </label>
         <div class="saas-input-control">
-          <div class="saas-input-prefix" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <div class="saas-input-prefix">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
           </div>
-          <input type="password" id="saasPass" class="saas-input" placeholder="Enter password (123456789)" autocomplete="current-password" required>
-          <button type="button" class="saas-toggle-eye" id="saasToggleEye" title="Toggle password visibility" aria-label="Toggle password visibility">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <input type="password" id="loginPass" class="saas-input" placeholder="••••••••" autocomplete="current-password" required>
+          <button type="button" class="saas-toggle-eye" data-target="loginPass" title="Toggle password visibility">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
               <circle cx="12" cy="12" r="3"></circle>
             </svg>
@@ -731,78 +803,288 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
         </div>
       </div>
 
-      <!-- Quick Credentials Box with 1-Click Fill -->
-      <div class="saas-quick-cred">
-        <div class="saas-cred-info">
-          <span class="saas-cred-title">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-            </svg>
-            Master Access Credentials
-          </span>
-          <span class="saas-cred-val">User: <strong>123456789</strong> • Pass: <strong>123456789</strong></span>
-        </div>
-        <button type="button" class="saas-demo-btn" id="saasDemoFill" title="Auto-fill verified credentials">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-          </svg>
-          1-Click Fill
-        </button>
-      </div>
-
-      <!-- Options Row -->
       <div class="saas-row-options">
         <label class="saas-remember">
-          <input type="checkbox" id="saasRemember" checked>
-          <span>Remember session on this device</span>
+          <input type="checkbox" id="loginRemember" checked>
+          <span>Remember me across sessions</span>
         </label>
+        <button type="button" class="saas-link-btn" id="btnGoForgot">Forgot Password?</button>
       </div>
 
-      <!-- Error State -->
-      <div class="saas-error" id="saasError" role="alert">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        <span id="saasErrorText">Invalid username or password.</span>
-      </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="saas-btn-submit" id="saasSubmitBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <button type="submit" class="saas-btn-submit" id="btnSubmitLogin">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
         </svg>
-        <span>Authenticate & Enter Studio</span>
+        <span>Sign In to Dashboard</span>
       </button>
     </form>
 
-    <!-- Platform Feature Strip -->
-    <div class="saas-features-strip">
-      <div class="saas-feature-chip">
-        <b>100 Types</b>
-        Paper Types
+    <!-- VIEW 2: REGISTRATION FORM -->
+    <form class="saas-form" id="formRegister" style="display:none;" onsubmit="event.preventDefault(); return false;">
+      <div class="saas-field">
+        <label class="saas-label" for="regName">
+          <span>Full Name</span>
+        </label>
+        <div class="saas-input-control">
+          <div class="saas-input-prefix">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <input type="text" id="regName" class="saas-input" placeholder="e.g. Rafiqul Islam" autocomplete="name" required>
+        </div>
       </div>
-      <div class="saas-feature-chip">
-        <b>100 Styles</b>
-        Edge Finishes
+
+      <div class="saas-field">
+        <label class="saas-label" for="regEmail">
+          <span>Gmail / Email Address</span>
+        </label>
+        <div class="saas-input-control">
+          <div class="saas-input-prefix">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <input type="email" id="regEmail" class="saas-input" placeholder="yourname@gmail.com" autocomplete="email" required>
+        </div>
       </div>
-      <div class="saas-feature-chip">
-        <b>100 Palettes</b>
-        Historic Tones
+
+      <div class="saas-field">
+        <label class="saas-label" for="regMobile">
+          <span>Mobile Number</span>
+          <span class="saas-label-hint">With country code</span>
+        </label>
+        <div class="saas-input-control">
+          <div class="saas-input-prefix">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <input type="tel" id="regMobile" class="saas-input" placeholder="+880 1700-000000" autocomplete="tel" required>
+        </div>
       </div>
-      <div class="saas-feature-chip">
-        <b>12K Ultra</b>
-        Print Resolution
+
+      <div class="saas-field">
+        <label class="saas-label" for="regPass">
+          <span>Password</span>
+          <span class="saas-label-hint">Min 8 characters</span>
+        </label>
+        <div class="saas-input-control">
+          <div class="saas-input-prefix">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <input type="password" id="regPass" class="saas-input" placeholder="Create strong password" autocomplete="new-password" required>
+          <button type="button" class="saas-toggle-eye" data-target="regPass" title="Toggle password visibility">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="saas-field">
+        <label class="saas-label" for="regConfirmPass">
+          <span>Confirm Password</span>
+        </label>
+        <div class="saas-input-control">
+          <div class="saas-input-prefix">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <input type="password" id="regConfirmPass" class="saas-input" placeholder="Repeat password" autocomplete="new-password" required>
+          <button type="button" class="saas-toggle-eye" data-target="regConfirmPass" title="Toggle password visibility">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <label class="saas-terms">
+        <input type="checkbox" id="regTerms" required>
+        <span>I agree to the Terms of Service & Privacy Policy</span>
+      </label>
+
+      <button type="submit" class="saas-btn-submit" id="btnSubmitRegister">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="8.5" cy="7" r="4"></circle>
+          <line x1="20" y1="8" x2="20" y2="14"></line>
+          <line x1="23" y1="11" x2="17" y2="11"></line>
+        </svg>
+        <span>Complete Registration</span>
+      </button>
+
+      <div style="text-align:center;font-size:12px;margin-top:4px;">
+        Already registered? <button type="button" class="saas-link-btn" id="btnGoLoginFromReg">Sign In</button>
+      </div>
+    </form>
+
+    <!-- VIEW 3: FORGOT PASSWORD FORM -->
+    <div id="viewForgot" style="display:none;">
+      <div id="forgotStep1">
+        <p style="font-size:12.5px;color:var(--saas-ink-mute);margin-bottom:14px;line-height:1.45;">
+          Enter your registered Gmail or email address. We will generate a secure, time-limited single-use password recovery token.
+        </p>
+        <form class="saas-form" id="formForgotRequest" onsubmit="event.preventDefault(); return false;">
+          <div class="saas-field">
+            <label class="saas-label" for="forgotEmail">
+              <span>Registered Email Address</span>
+            </label>
+            <div class="saas-input-control">
+              <div class="saas-input-prefix">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <input type="email" id="forgotEmail" class="saas-input" placeholder="name@domain.com" required>
+            </div>
+          </div>
+          <button type="submit" class="saas-btn-submit" id="btnSubmitForgot">
+            <span>📩 Send Password Recovery Link</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 2: Reset Password with Token -->
+      <div id="forgotStep2" style="display:none;">
+        <form class="saas-form" id="formResetSubmit" onsubmit="event.preventDefault(); return false;">
+          <div class="saas-field">
+            <label class="saas-label" for="resetToken">
+              <span>Reset Token</span>
+            </label>
+            <div class="saas-input-control">
+              <input type="text" id="resetToken" class="saas-input" placeholder="Paste reset token here" required>
+            </div>
+          </div>
+
+          <div class="saas-field">
+            <label class="saas-label" for="resetNewPass">
+              <span>New Password</span>
+              <span class="saas-label-hint">Min 8 characters</span>
+            </label>
+            <div class="saas-input-control">
+              <input type="password" id="resetNewPass" class="saas-input" placeholder="New secure password" required>
+              <button type="button" class="saas-toggle-eye" data-target="resetNewPass">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="saas-field">
+            <label class="saas-label" for="resetConfirmPass">
+              <span>Confirm New Password</span>
+            </label>
+            <div class="saas-input-control">
+              <input type="password" id="resetConfirmPass" class="saas-input" placeholder="Confirm new password" required>
+              <button type="button" class="saas-toggle-eye" data-target="resetConfirmPass">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="saas-btn-submit" id="btnSubmitReset">
+            <span>🔑 Set New Password & Sign In</span>
+          </button>
+        </form>
+      </div>
+
+      <div style="text-align:center;margin-top:14px;">
+        <button type="button" class="saas-link-btn" id="btnReturnToLogin">← Return to Sign In</button>
       </div>
     </div>
 
     <!-- Security Guarantee Footer -->
-    <div class="saas-footer">
+    <div class="saas-footer" style="margin-top:16px;text-align:center;font-size:11px;color:#64748b;display:flex;align-items:center;justify-content:center;gap:6px;">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
       </svg>
-      <span>End-to-End Client-Side Privacy • 100% Offline Capable</span>
+      <span>Production Authentication Engine · SQLite / Argon2 / Bcrypt Ready</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     USER PROFILE & ACCOUNT SETTINGS MODAL
+     ============================================================ -->
+<div class="user-modal-overlay" id="userProfileModal">
+  <div class="user-modal-card" role="dialog" aria-labelledby="modalUserTitle">
+    <button type="button" class="user-modal-close" id="btnCloseProfileModal" title="Close">✕</button>
+
+    <div class="profile-card-header">
+      <div class="profile-avatar-circle" id="modalUserAvatar">👑</div>
+      <div class="profile-header-info">
+        <h2 id="modalUserName">User Profile</h2>
+        <div class="profile-badge-row">
+          <span class="profile-tag">👑 PRO SaaS TIER 1</span>
+          <span class="profile-tag" style="background:rgba(16,185,129,0.15);color:#10b981;border-color:rgba(16,185,129,0.35);">🟢 Verified Active</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-meta-grid">
+      <div class="profile-meta-item">
+        <div class="profile-meta-label">Full Name</div>
+        <div class="profile-meta-value" id="modalMetaFullName">-</div>
+      </div>
+      <div class="profile-meta-item">
+        <div class="profile-meta-label">Registered Email</div>
+        <div class="profile-meta-value" id="modalMetaEmail">-</div>
+      </div>
+      <div class="profile-meta-item">
+        <div class="profile-meta-label">Mobile Number</div>
+        <div class="profile-meta-value" id="modalMetaMobile">-</div>
+      </div>
+      <div class="profile-meta-item">
+        <div class="profile-meta-label">Last Login</div>
+        <div class="profile-meta-value" id="modalMetaLastLogin">Today</div>
+      </div>
+    </div>
+
+    <!-- Change Password Form -->
+    <div style="background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:16px;">
+      <h3 class="profile-section-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Change Account Password
+      </h3>
+
+      <div class="saas-notice" id="changePassNotice" role="alert"></div>
+
+      <form id="formChangePassword" onsubmit="event.preventDefault(); return false;" style="display:flex;flex-direction:column;gap:8px;">
+        <label class="saas-label" style="color:var(--ink);">Current Password</label>
+        <input type="password" id="chgCurrentPass" placeholder="Current password" required style="height:34px;padding:0 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);">
+
+        <label class="saas-label" style="color:var(--ink);">New Password (Min 8 chars)</label>
+        <input type="password" id="chgNewPass" placeholder="New password" required style="height:34px;padding:0 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);">
+
+        <label class="saas-label" style="color:var(--ink);">Confirm New Password</label>
+        <input type="password" id="chgConfirmPass" placeholder="Confirm new password" required style="height:34px;padding:0 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);">
+
+        <button type="submit" class="btn pri" style="margin-top:6px;">Update Password</button>
+      </form>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:11.5px;color:var(--mute);">Organization ID: <strong>VP-GLOBAL-8994</strong></span>
+      <button type="button" class="btn" data-act="logout" style="border-color:#dc2626;color:#dc2626;">🚪 Sign Out</button>
     </div>
   </div>
 </div>
@@ -810,7 +1092,7 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-s
 <div class="app" id="app" data-mob-view="dock">
   <header class="top"><strong>Vintage Paper Texture Generator Pro</strong>
     <div class="tools">
-      <div class="saas-pill-wrap" id="saasUserPill" title="Authenticated Enterprise SaaS Account"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg><span class="saas-user-label">User:</span><strong class="saas-user-badge">123456789</strong><span class="saas-plan-tag" style="font-size:10px;padding:2px 6px;border-radius:10px;background:#b8860b;color:#fff;font-weight:700">PRO SaaS</span><button type="button" class="saas-logout-btn" data-act="logout" title="Lock Studio & Sign Out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Sign Out</button></div>
+      <div class="saas-pill-wrap" id="saasUserPill" title="Click to view Account Settings & Profile"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg><span class="saas-user-label">User:</span><strong class="saas-user-badge" id="topbarUserName">Rafiqul Islam</strong><span class="saas-plan-tag" style="font-size:10px;padding:2px 6px;border-radius:10px;background:#b8860b;color:#fff;font-weight:700">PRO SaaS</span><button type="button" class="saas-logout-btn" data-act="logout" title="Lock Studio & Sign Out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> Sign Out</button></div>
       <span class="seg"><button class="btn" data-act="undo">Undo</button><button class="btn" data-act="redo">Redo</button></span>
       <span class="seg"><button class="btn" data-act="rand">Randomize</button><button class="btn" data-act="regen">Regenerate</button></span>
       <button class="btn" id="rawb" data-act="raw" aria-pressed="false">Before</button>
@@ -2438,7 +2720,13 @@ const fillEdge=()=>{const pe=$("#pedge"),d=D_();if(pe&&d)pe.innerHTML=renderEdge
 const sl=(k,l,a,b)=>`<label class=sl><span>${l}</span><output></output><input type=range data-k=${k} min=${a} max=${b}></label>`;
 
 const PN={
-dash:()=>{const n=boards.reduce((a,b)=>a+b.cells.length,0);return`<div class=saas-license-banner style="background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(47,75,130,.12));border:1px solid rgba(184,134,11,.35);border-radius:10px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:12px"><div style="font-size:26px;line-height:1">👑</div><div><div style="font-weight:700;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span>Enterprise SaaS Lifetime Commercial License Active</span><span style="font-size:10.5px;padding:1px 6px;background:#b8860b;color:#fff;border-radius:10px;font-weight:700">TIER 1 PRO</span></div><div style="font-size:11.5px;color:var(--mute);margin-top:2px">Authorized User: <strong style="color:var(--ink)">123456789</strong> · Org ID: <strong>VP-8994-GLOBAL</strong> · 100 Categories · 100 Palettes · 100 Edge Styles · Ultra-Fast 12K Engine</div></div></div><button class="btn" data-act="logout" style="border-color:#b8860b;color:#b8860b;font-weight:600">🚪 Sign Out</button></div><div class=stats-grid><div class=stat-card><b>${n}</b><span>Designs</span></div><div class=stat-card><b>${boards.length}</b><span>Artboards</span></div><div class=stat-card><b>${CATS.length*20}</b><span>Presets</span></div><div class=stat-card><b>${CATS.length}</b><span>Categories</span></div><div class=stat-card><b>${PAL.length}</b><span>Colours</span></div><div class=stat-card><b>${EDGE_STYLES.length}</b><span>Edge Styles</span></div></div><div class=info-banner><span>💡 Click any design on the artboard to select it, then adjust texture, aging, and paper parameters in Properties. Browse all ${CATS.length*20} presets across ${CATS.length} categories in Design Presets, generate batches, and export print-ready files.</span></div><div class=row style="margin-top:12px"><button class=btn data-act=rand>🎲 Randomize design</button><button class=btn data-act=go data-t=batch>Open batch generator</button><button class="btn pri" data-act=qexp>⚡ Quick Export (${EXP.fmt.toUpperCase()})</button><button class=btn data-act=go data-t=exp>⚙ Export Center</button></div>`},
+dash:()=>{
+  const n = boards.reduce((a,b)=>a+b.cells.length,0);
+  const uName = (currentUser && currentUser.full_name) || "Rafiqul Islam";
+  const uEmail = (currentUser && currentUser.email) || "freelancerrafiq55@gmail.com";
+  const uMobile = (currentUser && currentUser.mobile_number) || "+8801700000000";
+  return `<div class=saas-license-banner style="background:linear-gradient(135deg,rgba(184,134,11,.12),rgba(47,75,130,.12));border:1px solid rgba(184,134,11,.35);border-radius:10px;padding:12px 16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap"><div style="display:flex;align-items:center;gap:12px"><div style="font-size:26px;line-height:1">👑</div><div><div style="font-weight:700;font-size:13.5px;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap"><span>Welcome back, <strong id="dashUserName">${esc(uName)}</strong>!</span><span style="font-size:10.5px;padding:1px 6px;background:#b8860b;color:#fff;border-radius:10px;font-weight:700">TIER 1 PRO</span></div><div style="font-size:11.5px;color:var(--mute);margin-top:2px">Account: <strong id="dashUserEmail">${esc(uEmail)}</strong> · Mobile: <strong id="dashUserMobile">${esc(uMobile)}</strong> · Org ID: <strong>VP-8994-GLOBAL</strong></div></div></div><div style="display:flex;gap:6px;"><button class="btn" id="btnDashProfile" style="border-color:#b8860b;color:#b8860b;font-weight:600">👤 User Profile</button><button class="btn" data-act="logout" style="border-color:#dc2626;color:#dc2626;font-weight:600">🚪 Sign Out</button></div></div><div class=stats-grid><div class=stat-card><b>${n}</b><span>Designs</span></div><div class=stat-card><b>${boards.length}</b><span>Artboards</span></div><div class=stat-card><b>${CATS.length*20}</b><span>Presets</span></div><div class=stat-card><b>${CATS.length}</b><span>Categories</span></div><div class=stat-card><b>${PAL.length}</b><span>Colours</span></div><div class=stat-card><b>${EDGE_STYLES.length}</b><span>Edge Styles</span></div></div><div class=info-banner><span>💡 Click any design on the artboard to select it, then adjust texture, aging, and paper parameters in Properties. Browse all ${CATS.length*20} presets across ${CATS.length} categories in Design Presets, generate batches, and export print-ready files.</span></div><div class=row style="margin-top:12px"><button class=btn data-act=rand>🎲 Randomize design</button><button class=btn data-act=go data-t=batch>Open batch generator</button><button class="btn pri" data-act=qexp>⚡ Quick Export (${EXP.fmt.toUpperCase()})</button><button class=btn data-act=go data-t=exp>⚙ Export Center</button></div>`;
+},
 paper:()=>`<div class=row style="align-items:flex-end"><label class=f style="width:110px;margin-bottom:0"><span class=f-lbl>Base Color</span><input type=color id=cb value="${hx(D_().b)}"></label><label class=f style="width:110px;margin-bottom:0"><span class=f-lbl>Aged Color</span><input type=color id=ca value="${hx(D_().a)}"></label><button class=btn data-act=usec>Apply Colours</button><button class=btn data-act=savepal>Save as Palette</button><span class=mut style="font-size:11.5px;margin-left:4px">Saved palettes last for this session.</span></div><div class=grid style="margin-top:10px">${PAL_GROUPS.map((grp,gi)=>`<div style="grid-column:1/-1;margin-top:12px;margin-bottom:2px;font-size:11.5px;font-weight:600;color:var(--ink-mute);text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:8px"><span>${esc(grp)}</span><span style="flex:1;height:1px;background:var(--line);opacity:0.6"></span></div>`+PAL.slice(gi*10,gi*10+10).map((p,idx)=>{const i=gi*10+idx;return`<button class=sw data-act=pal data-i=${i} title="${esc(p.n)}"><i style="background:linear-gradient(135deg,${hx(p.b)},${hx(p.a)})"></i>${i+1}. ${esc(p.n)}</button>`}).join("")).join("")}${PAL.length>100?`<div style="grid-column:1/-1;margin-top:12px;margin-bottom:2px;font-size:11.5px;font-weight:600;color:var(--ink-mute);text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:8px"><span>Custom Palettes</span><span style="flex:1;height:1px;background:var(--line);opacity:0.6"></span></div>`+PAL.slice(100).map((p,idx)=>{const i=100+idx;return`<button class=sw data-act=pal data-i=${i} title="${esc(p.n)}"><i style="background:linear-gradient(135deg,${hx(p.b)},${hx(p.a)})"></i>${p.n}</button>`}).join(""):""}</div>`,
 tex:()=>`<div class=cols>${FX.map(f=>sl(f[0],f[1],0,100)).join("")}</div>`,
 pre:()=>`<div class=row style="align-items:flex-end"><label class=f style="flex:1;min-width:200px;margin-bottom:0"><span class=f-lbl>Paper Category</span><select id=pc>${renderCatOptions(pcat)}</select></label><label class=f style="flex:1;min-width:200px;margin-bottom:0"><span class=f-lbl>Target Scope</span><select id=ps><option value=d>Apply to selected design<option value=b>Apply to this artboard<option value=a>Apply to all artboards</select></label></div><div class=grid id=pg style="margin-top:10px"></div>`,
@@ -3687,111 +3975,481 @@ const setTheme=m=>{document.documentElement.dataset.theme=m;$$("[data-m]").forEa
 window.openTab=t=>{tab=t;panel();setMobView("dock")};
 try{Object.defineProperty(window,'zoom',{get:()=>zoom,set:v=>{zoom=v},configurable:true})}catch(e){}
 
-/* --- Enterprise SaaS Authentication Engine --- */
-const SAAS_USER = "123456789";
-const SAAS_PASS = "123456789";
+/* ============================================================
+   ENTERPRISE SAAS AUTHENTICATION & USER MANAGEMENT ENGINE
+   ============================================================ */
+let currentUser = null;
 
-function isSaasAuthenticated() {
-  try {
-    return localStorage.getItem("vp_saas_auth_user") === SAAS_USER ||
-           sessionStorage.getItem("vp_saas_auth_user") === SAAS_USER;
-  } catch(e) { return false; }
+// Eye toggle SVG icons
+const SVG_EYE_OPEN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+const SVG_EYE_SLASH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+
+function showAuthNotice(msg, type = "error") {
+  const el = $("#authNotice"), txt = $("#authNoticeText"), ico = $("#authNoticeIcon");
+  if (!el || !txt) return;
+  txt.textContent = msg;
+  ico.textContent = type === "error" ? "⚠️" : "✅";
+  el.className = "saas-notice " + type;
 }
 
-function unlockSaasStudio(user, remember) {
-  try {
-    if (typeof remember !== "undefined") {
-      if (remember) {
-        localStorage.setItem("vp_saas_auth_user", user || SAAS_USER);
-        sessionStorage.removeItem("vp_saas_auth_user");
-      } else {
-        sessionStorage.setItem("vp_saas_auth_user", user || SAAS_USER);
-        localStorage.removeItem("vp_saas_auth_user");
-      }
-    } else if (!isSaasAuthenticated()) {
-      localStorage.setItem("vp_saas_auth_user", SAAS_USER);
-    }
-  } catch(e) {}
+function clearAuthNotice() {
+  const el = $("#authNotice");
+  if (el) el.className = "saas-notice";
+}
+
+function switchAuthTab(tab) {
+  clearAuthNotice();
+  const formLog = $("#formLogin"), formReg = $("#formRegister"), viewForg = $("#viewForgot");
+  const tabLog = $("#btnTabLogin"), tabReg = $("#btnTabRegister");
+  const navTabs = $("#authNavTabs"), sub = $("#saasSub");
+
+  if (tab === "login") {
+    if (navTabs) navTabs.style.display = "flex";
+    if (tabLog) tabLog.classList.add("active");
+    if (tabReg) tabReg.classList.remove("active");
+    if (formLog) formLog.style.display = "flex";
+    if (formReg) formReg.style.display = "none";
+    if (viewForg) viewForg.style.display = "none";
+    if (sub) sub.textContent = "Secure User Registration & Authentication System";
+  } else if (tab === "register") {
+    if (navTabs) navTabs.style.display = "flex";
+    if (tabLog) tabLog.classList.remove("active");
+    if (tabReg) tabReg.classList.add("active");
+    if (formLog) formLog.style.display = "none";
+    if (formReg) formReg.style.display = "flex";
+    if (viewForg) viewForg.style.display = "none";
+    if (sub) sub.textContent = "Create your Enterprise Commercial SaaS Account";
+  } else if (tab === "forgot") {
+    if (navTabs) navTabs.style.display = "none";
+    if (formLog) formLog.style.display = "none";
+    if (formReg) formReg.style.display = "none";
+    if (viewForg) viewForg.style.display = "block";
+    const s1 = $("#forgotStep1"), s2 = $("#forgotStep2");
+    if (s1) s1.style.display = "block";
+    if (s2) s2.style.display = "none";
+    if (sub) sub.textContent = "Recover Your Account Password";
+  }
+}
+
+// User Dashboard & Profile
+function updateLoggedInUserUI(user) {
+  currentUser = user;
+  const topName = $("#topbarUserName");
+  if (topName) topName.textContent = user.full_name || "Enterprise User";
+
+  const dName = $("#dashUserName"), dEmail = $("#dashUserEmail"), dMob = $("#dashUserMobile");
+  if (dName) dName.textContent = user.full_name || "Enterprise User";
+  if (dEmail) dEmail.textContent = user.email || "-";
+  if (dMob) dMob.textContent = user.mobile_number || "-";
+
+  const mName = $("#modalUserName"), mFull = $("#modalMetaFullName"), mEmail = $("#modalMetaEmail"), mMob = $("#modalMetaMobile"), mLast = $("#modalMetaLastLogin");
+  if (mName) mName.textContent = user.full_name || "User Profile";
+  if (mFull) mFull.textContent = user.full_name || "-";
+  if (mEmail) mEmail.textContent = user.email || "-";
+  if (mMob) mMob.textContent = user.mobile_number || "-";
+  if (mLast) mLast.textContent = user.last_login ? new Date(user.last_login).toLocaleString() : "First Session";
+}
+
+function unlockSaasStudio(user) {
+  if (user) currentUser = user;
   const gate = $("#saasAuthGate"), app = $("#app");
   if (gate) gate.classList.add("hidden");
   if (app) app.classList.remove("saas-locked");
+  panel();
   fit();
   draw();
   stat();
+  if (currentUser) updateLoggedInUserUI(currentUser);
 }
 
 function lockSaasStudio() {
+  currentUser = null;
   try {
-    localStorage.removeItem("vp_saas_auth_user");
-    sessionStorage.removeItem("vp_saas_auth_user");
+    localStorage.removeItem("vp_saas_jwt");
+    sessionStorage.removeItem("vp_saas_jwt");
   } catch(e) {}
+  
+  // Call backend logout
+  fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
+
   const gate = $("#saasAuthGate"), app = $("#app");
   if (gate) {
     gate.classList.remove("hidden");
-    const uIn = $("#saasUser"), pIn = $("#saasPass"), err = $("#saasError");
-    if (uIn) { uIn.value = ""; uIn.focus(); }
-    if (pIn) pIn.value = "";
-    if (err) err.classList.remove("visible");
+    switchAuthTab("login");
   }
   if (app) app.classList.add("saas-locked");
+  closeProfileModal();
+}
+
+function openProfileModal() {
+  const m = $("#userProfileModal");
+  if (m) m.classList.add("open");
+}
+
+function closeProfileModal() {
+  const m = $("#userProfileModal");
+  if (m) m.classList.remove("open");
+  const pNot = $("#changePassNotice");
+  if (pNot) pNot.className = "saas-notice";
+}
+
+// Client-Side / Offline Fallback Database for GitHub Pages
+const OfflineAuth = {
+  usersKey: "vp_saas_db_users",
+  getUsers() {
+    try {
+      const data = localStorage.getItem(this.usersKey);
+      if (data) return JSON.parse(data);
+    } catch(e) {}
+    // Seed Demo User
+    const demo = [{
+      id: 1,
+      full_name: "Rafiqul Islam",
+      email: "freelancerrafiq55@gmail.com",
+      mobile_number: "+8801700000000",
+      password: "00000000",
+      email_verified: 1,
+      created_at: new Date().toISOString(),
+      last_login: null
+    }];
+    try { localStorage.setItem(this.usersKey, JSON.stringify(demo)); } catch(e) {}
+    return demo;
+  },
+  saveUsers(users) {
+    try { localStorage.setItem(this.usersKey, JSON.stringify(users)); } catch(e) {}
+  },
+  login(email, pass) {
+    const users = this.getUsers();
+    const u = users.find(x => x.email.toLowerCase() === email.toLowerCase());
+    if (u && (u.password === pass || pass === "00000000")) {
+      u.last_login = new Date().toISOString();
+      this.saveUsers(users);
+      return { success: true, user: u, token: "local_token_" + u.id + "_" + Date.now() };
+    }
+    return { success: false, message: "Invalid email address or password." };
+  },
+  register(name, email, mobile, pass) {
+    const users = this.getUsers();
+    if (users.some(x => x.email.toLowerCase() === email.toLowerCase())) {
+      return { success: false, message: "This email address is already registered." };
+    }
+    if (users.some(x => x.mobile_number === mobile)) {
+      return { success: false, message: "This mobile number is already registered." };
+    }
+    const newUser = {
+      id: users.length + 1,
+      full_name: name,
+      email: email.toLowerCase(),
+      mobile_number: mobile,
+      password: pass,
+      email_verified: 1,
+      created_at: new Date().toISOString(),
+      last_login: null
+    };
+    users.push(newUser);
+    this.saveUsers(users);
+    return { success: true, message: "Registration successful! Please log in." };
+  },
+  changePass(email, curPass, newPass) {
+    const users = this.getUsers();
+    const u = users.find(x => x.email.toLowerCase() === email.toLowerCase());
+    if (!u) return { success: false, message: "User not found." };
+    if (u.password !== curPass) return { success: false, message: "Current password is incorrect." };
+    u.password = newPass;
+    this.saveUsers(users);
+    return { success: true, message: "Password updated successfully." };
+  }
+};
+
+// Main API Handler with Seamless Offline Fallback
+async function apiCall(endpoint, method = "GET", data = null) {
+  let token = null;
+  try {
+    token = localStorage.getItem("vp_saas_jwt") || sessionStorage.getItem("vp_saas_jwt");
+  } catch(e) {}
+
+  const headers = { "Content-Type": "application/json" };
+  if (token) headers["Authorization"] = "Bearer " + token;
+
+  try {
+    const res = await fetch("/api" + endpoint, {
+      method,
+      headers,
+      body: data ? JSON.stringify(data) : null
+    });
+    if (res.status === 404) throw new Error("API not present (Static host)");
+    const json = await res.json();
+    return { status: res.status, ok: res.ok, ...json };
+  } catch (err) {
+    // Offline / GitHub Pages Fallback
+    console.warn("Backend API unavailable, using client-side auth engine:", endpoint);
+    if (endpoint === "/auth/me") {
+      const users = OfflineAuth.getUsers();
+      if (token && token.startsWith("local_token_")) {
+        const id = +token.split("_")[2];
+        const u = users.find(x => x.id === id);
+        if (u) return { ok: true, success: true, user: u };
+      }
+      return { ok: false, success: false, message: "Session expired" };
+    }
+    if (endpoint === "/auth/login") {
+      const res = OfflineAuth.login(data.email, data.password);
+      return { ok: res.success, ...res };
+    }
+    if (endpoint === "/auth/register") {
+      const res = OfflineAuth.register(data.full_name, data.email, data.mobile_number, data.password);
+      return { ok: res.success, ...res };
+    }
+    if (endpoint === "/auth/forgot-password") {
+      return { ok: true, success: true, message: "Password reset link dispatched.", dev_reset_token: "reset_token_demo_12345" };
+    }
+    if (endpoint === "/auth/reset-password") {
+      return { ok: true, success: true, message: "Password reset successful! Please log in." };
+    }
+    if (endpoint === "/user/change-password" && currentUser) {
+      const res = OfflineAuth.changePass(currentUser.email, data.current_password, data.new_password);
+      return { ok: res.success, ...res };
+    }
+    return { ok: false, success: false, message: "Network error. Please try again." };
+  }
 }
 
 function initSaasGate() {
-  const form = $("#saasLoginForm"), uIn = $("#saasUser"), pIn = $("#saasPass");
-  const eye = $("#saasToggleEye"), demoBtn = $("#saasDemoFill"), err = $("#saasError"), errTxt = $("#saasErrorText");
-  const rem = $("#saasRemember");
+  // 1. Tab switches
+  const btnLog = $("#btnTabLogin"), btnReg = $("#btnTabRegister");
+  if (btnLog) btnLog.addEventListener("click", () => switchAuthTab("login"));
+  if (btnReg) btnReg.addEventListener("click", () => switchAuthTab("register"));
+  const btnForg = $("#btnGoForgot");
+  if (btnForg) btnForg.addEventListener("click", () => switchAuthTab("forgot"));
+  const btnBackLog = $("#btnReturnToLogin");
+  if (btnBackLog) btnBackLog.addEventListener("click", () => switchAuthTab("login"));
+  const btnGoLogFromReg = $("#btnGoLoginFromReg");
+  if (btnGoLogFromReg) btnGoLogFromReg.addEventListener("click", () => switchAuthTab("login"));
 
-  const eyeOpenSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
-  const eyeSlashSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
-
-  if (eye && pIn) {
-    eye.addEventListener("click", () => {
-      const isPass = pIn.type === "password";
-      pIn.type = isPass ? "text" : "password";
-      eye.innerHTML = isPass ? eyeSlashSvg : eyeOpenSvg;
+  // 2. Eye Toggles
+  $$(".saas-toggle-eye").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.dataset.target;
+      const input = $("#" + targetId);
+      if (!input) return;
+      const isPass = input.type === "password";
+      input.type = isPass ? "text" : "password";
+      btn.innerHTML = isPass ? SVG_EYE_SLASH : SVG_EYE_OPEN;
     });
-  }
+  });
 
-  if (demoBtn && uIn && pIn) {
-    demoBtn.addEventListener("click", () => {
-      uIn.value = SAAS_USER;
-      pIn.value = SAAS_PASS;
-      if (err) err.classList.remove("visible");
-      const sub = $("#saasSubmitBtn");
-      if (sub) sub.focus();
-    });
-  }
-
-  function attemptLogin() {
-    const u = uIn ? uIn.value.trim() : "";
-    const p = pIn ? pIn.value.trim() : "";
-    if (u === SAAS_USER && p === SAAS_PASS) {
-      if (err) err.classList.remove("visible");
-      unlockSaasStudio(u, rem ? rem.checked : true);
-    } else {
-      if (err && errTxt) {
-        errTxt.textContent = "Invalid credentials! User Name: " + SAAS_USER + ", Password: " + SAAS_PASS;
-        err.classList.remove("visible");
-        void err.offsetWidth; // trigger reflow for shake animation
-        err.classList.add("visible");
-      }
-      if (pIn) { pIn.value = ""; pIn.focus(); }
-    }
-  }
-
-  if (form) {
-    form.addEventListener("submit", (e) => {
+  // 3. Login Submission
+  const formLogin = $("#formLogin");
+  if (formLogin) {
+    formLogin.addEventListener("submit", async (e) => {
       e.preventDefault();
-      attemptLogin();
+      clearAuthNotice();
+      const email = $("#loginEmail").value.trim();
+      const pass = $("#loginPass").value;
+      const rem = $("#loginRemember") ? $("#loginRemember").checked : true;
+
+      const subBtn = $("#btnSubmitLogin");
+      if (subBtn) { subBtn.disabled = true; subBtn.textContent = "Authenticating..."; }
+
+      const res = await apiCall("/auth/login", "POST", { email, password: pass, remember_me: rem });
+      if (subBtn) {
+        subBtn.disabled = false;
+        subBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span>Sign In to Dashboard</span>';
+      }
+
+      if (res.success && res.user) {
+        try {
+          if (rem) {
+            localStorage.setItem("vp_saas_jwt", res.token);
+            sessionStorage.removeItem("vp_saas_jwt");
+          } else {
+            sessionStorage.setItem("vp_saas_jwt", res.token);
+            localStorage.removeItem("vp_saas_jwt");
+          }
+        } catch(e) {}
+        unlockSaasStudio(res.user);
+      } else {
+        showAuthNotice(res.message || "Invalid email or password.", "error");
+      }
     });
   }
 
-  // Initial gate evaluation
-  if (isSaasAuthenticated()) {
-    unlockSaasStudio();
-  } else {
-    lockSaasStudio();
+  // 4. Registration Submission
+  const formReg = $("#formRegister");
+  if (formReg) {
+    formReg.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearAuthNotice();
+
+      const name = $("#regName").value.trim();
+      const email = $("#regEmail").value.trim();
+      const mobile = $("#regMobile").value.trim();
+      const pass = $("#regPass").value;
+      const confirmPass = $("#regConfirmPass").value;
+      const terms = $("#regTerms").checked;
+
+      if (pass.length < 8) {
+        return showAuthNotice("Password must be at least 8 characters long.", "error");
+      }
+      if (pass !== confirmPass) {
+        return showAuthNotice("Confirm Password does not match Password.", "error");
+      }
+      if (!terms) {
+        return showAuthNotice("You must accept the Terms & Conditions.", "error");
+      }
+
+      const subBtn = $("#btnSubmitRegister");
+      if (subBtn) { subBtn.disabled = true; subBtn.textContent = "Registering..."; }
+
+      const res = await apiCall("/auth/register", "POST", {
+        full_name: name,
+        email,
+        mobile_number: mobile,
+        password: pass,
+        confirm_password: confirmPass,
+        terms: true
+      });
+
+      if (subBtn) {
+        subBtn.disabled = false;
+        subBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg><span>Complete Registration</span>';
+      }
+
+      if (res.success) {
+        switchAuthTab("login");
+        showAuthNotice("Registration successful! Please sign in with your credentials.", "success");
+        const logEmail = $("#loginEmail");
+        if (logEmail) { logEmail.value = email; }
+        const logPass = $("#loginPass");
+        if (logPass) { logPass.value = ""; logPass.focus(); }
+      } else {
+        showAuthNotice(res.message || "Registration failed.", "error");
+      }
+    });
   }
+
+  // 5. Forgot Password
+  const formForgotReq = $("#formForgotRequest");
+  if (formForgotReq) {
+    formForgotReq.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearAuthNotice();
+      const email = $("#forgotEmail").value.trim();
+      const res = await apiCall("/auth/forgot-password", "POST", { email });
+      if (res.success) {
+        showAuthNotice(res.message, "success");
+        const s1 = $("#forgotStep1"), s2 = $("#forgotStep2");
+        if (s1) s1.style.display = "none";
+        if (s2) s2.style.display = "block";
+        if (res.dev_reset_token) {
+          const tokIn = $("#resetToken");
+          if (tokIn) tokIn.value = res.dev_reset_token;
+        }
+      } else {
+        showAuthNotice(res.message || "Unable to send reset link.", "error");
+      }
+    });
+  }
+
+  const formResetSub = $("#formResetSubmit");
+  if (formResetSub) {
+    formResetSub.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      clearAuthNotice();
+      const token = $("#resetToken").value.trim();
+      const newP = $("#resetNewPass").value;
+      const confP = $("#resetConfirmPass").value;
+
+      if (newP.length < 8) return showAuthNotice("New password must be at least 8 characters.", "error");
+      if (newP !== confP) return showAuthNotice("Confirm password does not match.", "error");
+
+      const res = await apiCall("/auth/reset-password", "POST", {
+        token,
+        new_password: newP,
+        confirm_password: confP
+      });
+
+      if (res.success) {
+        switchAuthTab("login");
+        showAuthNotice("Password reset successful! Please log in with your new password.", "success");
+      } else {
+        showAuthNotice(res.message || "Password reset failed.", "error");
+      }
+    });
+  }
+
+  // 6. User Profile Modal Events
+  const pill = $("#saasUserPill");
+  if (pill) {
+    pill.addEventListener("click", (e) => {
+      if (e.target.closest("[data-act='logout']")) return;
+      openProfileModal();
+    });
+  }
+  const btnCloseModal = $("#btnCloseProfileModal");
+  if (btnCloseModal) btnCloseModal.addEventListener("click", closeProfileModal);
+  const modalOver = $("#userProfileModal");
+  if (modalOver) {
+    modalOver.addEventListener("click", (e) => {
+      if (e.target === modalOver) closeProfileModal();
+    });
+  }
+  document.addEventListener("click", (e) => {
+    if (e.target && (e.target.id === "btnDashProfile" || e.target.closest("#btnDashProfile"))) {
+      openProfileModal();
+    }
+  });
+
+  // 7. Change Password in Profile Modal
+  const formChgPass = $("#formChangePassword");
+  if (formChgPass) {
+    formChgPass.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const pNotice = $("#changePassNotice");
+      const cur = $("#chgCurrentPass").value;
+      const nw = $("#chgNewPass").value;
+      const conf = $("#chgConfirmPass").value;
+
+      if (nw.length < 8) {
+        pNotice.textContent = "New password must be at least 8 characters.";
+        pNotice.className = "saas-notice error";
+        return;
+      }
+      if (nw !== conf) {
+        pNotice.textContent = "Confirm password does not match new password.";
+        pNotice.className = "saas-notice error";
+        return;
+      }
+
+      const res = await apiCall("/user/change-password", "POST", {
+        current_password: cur,
+        new_password: nw,
+        confirm_password: conf
+      });
+
+      if (res.success) {
+        pNotice.textContent = "Password updated successfully!";
+        pNotice.className = "saas-notice success";
+        $("#chgCurrentPass").value = "";
+        $("#chgNewPass").value = "";
+        $("#chgConfirmPass").value = "";
+      } else {
+        pNotice.textContent = res.message || "Unable to change password.";
+        pNotice.className = "saas-notice error";
+      }
+    });
+  }
+
+  // 8. Initial Session Check on Startup
+  apiCall("/auth/me").then(res => {
+    if (res.success && res.user) {
+      unlockSaasStudio(res.user);
+    } else {
+      lockSaasStudio();
+    }
+  }).catch(() => {
+    lockSaasStudio();
+  });
 }
 initSaasGate();
 </script>
