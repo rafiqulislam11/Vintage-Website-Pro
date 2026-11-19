@@ -37,9 +37,9 @@ function requireAuth(req, res, next) {
       });
     }
 
-    // Fetch user details
+    // Fetch user details including role
     const user = db.prepare(`
-      SELECT id, full_name, email, mobile_number, email_verified, created_at, last_login 
+      SELECT id, full_name, email, mobile_number, role, email_verified, created_at, last_login 
       FROM users WHERE id = ?
     `).get(decoded.id);
 
@@ -61,4 +61,16 @@ function requireAuth(req, res, next) {
   }
 }
 
-module.exports = { requireAuth };
+function requireAdmin(req, res, next) {
+  requireAuth(req, res, () => {
+    if (!req.user || req.user.role !== 'admin') {
+      return res.status(403).json({
+        success: false,
+        message: 'Access denied: Administrator privileges required.'
+      });
+    }
+    next();
+  });
+}
+
+module.exports = { requireAuth, requireAdmin };

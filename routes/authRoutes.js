@@ -164,6 +164,7 @@ router.post('/login', checkRateLimit, (req, res) => {
         full_name: user.full_name,
         email: user.email,
         mobile_number: user.mobile_number,
+        role: user.role || 'user',
         email_verified: Boolean(user.email_verified),
         created_at: user.created_at,
         last_login: now

@@ -27,11 +27,16 @@ A museum-grade, high-performance web application for procedurally generating aut
   - Scalable vector exports (SVG, EPS, AI, and Adobe Illustrator ExtendScript `.jsx`).
   - Automated PKZIP archive bundling.
   - Commercial stock metadata generator (Adobe Stock, Freepik, Etsy).
-- **100% Self-Contained**: Zero external CDNs or third-party dependencies.
+- **100% Self-Contained Single-File Master**: Everything is unified into one single production file `index.html` with zero external CDNs.
+- **Enterprise Subscription & Payment System**:
+  - Official Payment Numbers: **bKash (01930279175)** & **Nagad (01930279175)** with one-click Copy Number.
+  - 3 Commercial Pricing Plans: Monthly (৳500 / 30 Days), Yearly (৳1,500 / 365 Days), Lifetime (৳3,000 / Lifetime Access).
+  - Admin Approval Dashboard: Dedicated payment verification panel with instant approval, custom rejection reasons, and gateway settings.
+  - Floating WhatsApp Support: Official number **01310824987** with direct link and prefilled message.
 
 ## 🚀 Getting Started
 
-Simply open `Vintage Paper Texture Generator Pro.html` in any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Safari).
+Simply open `index.html` in any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Safari) or run `npm start` for local backend development at `http://localhost:3000`.
 
 ## 📄 License
 
